@@ -14,6 +14,6 @@ class Queue
   end
 
   def show
-    queue
+    p queue
   end
 end
