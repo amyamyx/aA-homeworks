@@ -20,35 +20,41 @@ class Board
   end
 
   def make_move(start_pos, current_player_name)
+
     num_of_stones = @cups[start_pos].length
     i = start_pos + 1
 
+    #take out the stones to hold in hand before distributing
     @cups[start_pos] = []
 
-    until num_of_stones == 0
-      skipped_i = current_player_name == @name1 ? 13 : 6
-
-      unless i % 14 == skipped_i
-        @cups[i % 14] << :stone
-        num_of_stones -= 1
-      end
-
-      i += 1
-    end
+    skipped_i = current_player_name == @name1 ? 13 : 6
+    distribue_stones(i, skipped_i, num_of_stones)
     render
     next_turn(i)
 
     store_i = current_player_name == @name1 ? 6 : 13
     switch  = nil
     prompt = nil
-    if @cups[i % 14] == [:stone]
+    if @cups[i] == [:stone]
       switch = :switch
     end
 
-    if i % 14 == store_i
+    if i == store_i
       prompt = :prompt
     end
-    
+
+
+  end
+
+  def distribue_stones(i, skipped_i, num_of_stones)
+    until num_of_stones == 0
+      i %= 14
+      unless i == skipped_i
+        @cups[i] << :stone
+        num_of_stones -= 1
+      end
+      i += 1
+    end
   end
 
   def next_turn(ending_cup_idx)
@@ -64,8 +70,16 @@ class Board
   end
 
   def one_side_empty?
+    @cups[0, 6].all?(&:empty?) || @cups[7, 6].all?(&:empty?)
   end
 
   def winner
+    case @cups[6].count <=> @cups[13].count
+    when 1 then @name1
+    when -1 then @name2
+    when 0 then :draw
+    else
+      nil
+    end
   end
 end
