@@ -1,5 +1,5 @@
 class LRUCache
-  
+
   def initialize(cache_size)
     @cache_size = cache_size
     @cache = Hash.new
@@ -17,7 +17,7 @@ class LRUCache
   end
 
   def show
-    sort_cache.keys
+    p sort_cache.keys
   end
 
   private
