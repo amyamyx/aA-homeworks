@@ -133,15 +133,15 @@ class Playwright
   end
 
   def get_plays
-    PlayDBConnection.instance.execute(<<-SQL, @name)
+    PlayDBConnection.instance.execute(<<-SQL, @id)
       SELECT
         *
       FROM
         plays
         JOIN
-          playwrights ON plays.playwright_id = playwrights.id
+          playwrights ON  plays.playwright_id = playwrights.id
       WHERE
-        playwright.name = ?
+        playwrights.id = ?
     SQL
   end
 end
