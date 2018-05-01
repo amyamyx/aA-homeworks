@@ -24,7 +24,7 @@ class Play
         title = ?
     SQL
 
-    plays.map { |datum| Play.new(datum) }
+    plays.map { |datum| Play.new(datum) }.first
   end
 
   def self.find_by_playwright(name)
