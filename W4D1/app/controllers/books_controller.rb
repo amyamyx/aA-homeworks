@@ -8,11 +8,11 @@ class BooksController < ApplicationController
     render :new
   end
 
-  # def show
-  #   book = Book.find_by(id: params[:id])
-  #
-  #   render json: book
-  # end
+  def show
+    book = Book.find_by(id: params[:id])
+
+    render json: book
+  end
 
   def create
     book = Book.new(book_params)

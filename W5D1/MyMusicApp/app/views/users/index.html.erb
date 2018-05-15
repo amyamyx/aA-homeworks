@@ -1,0 +1,8 @@
+<h1>This is the index page</h1>
+
+<ul>
+  <% @users.each do |user| %>
+    <li>email: <%= user.email %></li>
+    <a href='<%= user_url(user) %>'>show user</a>
+  <% end %>
+</ul>

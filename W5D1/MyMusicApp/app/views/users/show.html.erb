@@ -1,0 +1,12 @@
+<h1>This is the Show page</h1>
+
+
+<ul>
+  <li>Email: <%= @user.email %></li>
+</ul>
+
+<% if @user == current_user %>
+  <a href="<%= edit_user_url(@user) %>">Update info</a>
+<% end %>
+
+<a href="<%= users_url %>">Go back</a>

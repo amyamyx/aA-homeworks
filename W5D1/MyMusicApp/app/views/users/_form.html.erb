@@ -1,0 +1,36 @@
+<% case type %>
+<% when :new %>
+  <% action = users_url %>
+  <% method = 'post' %>
+  <% button_text = 'Sign Up' %>
+  <% back_url = users_url %>
+<% when :login %>
+  <% action = session_url %>
+  <% method = 'post' %>
+  <% button_text = 'Log In' %>
+<% when :edit %>
+  <% action = user_url(@user) %>
+  <% method = 'PATCH' %>
+  <% button_text = 'Save Update' %>
+  <% back_url = user_url(@user) %>
+<% end %>
+
+<form action="<%= action %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="<%= method %>">
+  <% unless type == :edit %>
+  <label for="email">Email: </label>
+  <input type="text" id="email" name="user[email]" value="<%= user.email %>">
+  <br>
+  <br>
+  <% end %>
+
+  <label for="password"><%= type == :edit ? "New password" : "Password" %>: </label>
+  <input type="password" id="password" name="user[password]">
+
+  <input type="submit" value="<%= button_text %>">
+</form>
+
+<% if type == :edit %>
+  <a href="<%=back_url%>">Back</a>
+<% end %>

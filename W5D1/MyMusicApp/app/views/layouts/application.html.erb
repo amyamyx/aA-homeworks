@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MyMusicApp</title>
+    <%= csrf_meta_tags %>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+    <%#= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%#= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+      body {
+        background: PeachPuff;
+        font-family: Montserrat;
+      }
+      header {
+        background: brown;
+        height: 50px;
+
+      }
+      header p {
+        margin: 10px 10px 0px 5px;
+        display: inline-block;
+        color: white;
+        font-size: 20px;
+        float: right;
+      }
+
+      header a {
+        color: white;
+        display: inline-block;
+        float: right;
+        margin: 10px 10px 30px 10px;
+      }
+      header > form {
+        display: inline-block;
+        float: right;
+        margin: 10px 10px 30px 10px;
+      }
+      h1 {
+        text-align: center;
+      }
+
+      section {
+        margin:auto;
+        margin-top: 50px;
+        width: 30%;
+        border: 3px solid green;
+        padding: 10px;
+        padding-bottom: 40px;
+      }
+
+      label {
+        margin-left: 50px;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <!-- <img src="MUSIC.jpg" alt="logo"> -->
+      <% if logged_in? %>
+        <form action="<%= session_url %>" method="post">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <input type="hidden" name="_method" value="delete">
+          <input type="submit" value="logout">
+        </form>
+        <p>logged in as: <%=current_user.email%></p>
+      <% else %>
+        <a href="<%= new_user_url %>">Sign up here!</a>
+      <% end %>
+    </header>
+    <section>
+      <%= yield %>
+    </section>
+
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- < -->
