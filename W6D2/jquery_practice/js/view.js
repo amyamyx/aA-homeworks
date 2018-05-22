@@ -22,8 +22,8 @@ View.prototype.exercise1 = function () {
   //Challenge: Give every square the class 'orange'
   //Result: Every square should turn orange (we already have a CSS rule)
 
-  //your code here!
-  $('.square').addClass("oragne");
+  //your code here!]
+  $(".square").addClass("orange");
 };
 
 View.prototype.exercise2 = function () {
@@ -48,8 +48,11 @@ View.prototype.exercise4 = function () {
   //Result: Your name appears in every other square.
 
   //your code here!
-  const $everyOtherSquare = $(".square:nth_of_type(2)");
-  $everyOtherSquare.text("Tiffany");
+  $('.square:nth_child(even)').text("tiff");
+  // const $selected = $("li:nth_child(even)");
+  // for (let i = 0; i < $selected.length; i++) {
+  //   $selected.eq(i).text("oh");
+  // }
 };
 
 View.prototype.exercise5 = function () {
@@ -61,8 +64,8 @@ View.prototype.exercise5 = function () {
   //  'data-pos' of every square
 
   //your code here!
-  const $square = $(".square");
-  $square.on('click', (e) => {
+  const $squares = $(".square");
+  $squares.on('click', (e) => {
     const $square = $(e.currentTarget);
     alert($square.attr('data-pos'));
   })
@@ -77,6 +80,10 @@ View.prototype.exercise6 = function () {
   //hint: use window._randomColorString() (defined at top) to get a random color!
 
   //your code here!
+  const $squares = $(".square");
+  for (let i = 0; i < $squares.length; i++) {
+    $squares.eq(i).css('background', window._randomColorString());
+  }
 };
 
 View.prototype.exercise7 = function(){
@@ -87,6 +94,10 @@ View.prototype.exercise7 = function(){
   //rainbow.
 
   //your code here!
+  $('.square').on('mouseover', (e) => {
+    const $square = $(e.currentTarget);
+    console.log($square.css("background-color"));
+  })
 };
 
 
