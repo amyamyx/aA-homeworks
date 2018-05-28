@@ -1,13 +1,13 @@
 import React from 'react';
 import Job from './job';
-import selectLocation from './../actions';
+import {selectLocation} from './../actions';
 
 class Widget extends React.Component {
 
   constructor(props) {
     super(props);
     this.forceUpdate = this.forceUpdate.bind(this);
-
+    console.log(this.props);
     // require this component to re-render whenever the store's state changes
     this.props.store.subscribe(this.forceUpdate);
     this.cities = ["San Francisco", "Seattle", "New York", "Austin", "Remote"];
@@ -64,7 +64,7 @@ class Widget extends React.Component {
           Location:
           {cityOptions}
         </div>
-        
+
         <h3>{jobListings.length} Job Listings</h3>
         <ol className="listings-list">
             {jobListings}
